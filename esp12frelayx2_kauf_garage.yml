@@ -1,8 +1,12 @@
 esphome:
-  name: esp12frelayx2_kauf_garage
+  name: esp12frelayx2-kauf-garage
 
 esp8266:
   board: esp12e
+
+wifi:
+  ssid: DAS-AUGE
+  password: testtesttest
 
 # Use the blue LED in the device as a status LED, which will blink if there are warnings (slow) or errors (fast)
 status_led:
@@ -25,3 +29,6 @@ switch:
     name: Led16
     pin: GPIO16
     inverted: true
+
+web_server:
+  port: 80
