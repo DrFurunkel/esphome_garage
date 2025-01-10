@@ -31,7 +31,6 @@ switch:
     inverted: true
 
 binary_sensor:
-
   # GPIO12 as binary sensor, just a binary sensor called "Reed1" (filtered on and off for 10ms), pullup enabled, no actions
   - platform: gpio
     pin: 
@@ -43,7 +42,6 @@ binary_sensor:
     filters:
       - delayed_on: 10ms
       - delayed_off: 10ms
-
 
   # GPIO13 as binary sensor, just a binary sensor called "Reed2" (filtered on and off for 10ms), pullup enabled, no actions
   - platform: gpio
