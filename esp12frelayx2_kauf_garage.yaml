@@ -1,0 +1,61 @@
+esphome:
+  name: esp12frelayx2-kauf-garage
+
+esp8266:
+  board: esp12e
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# Use the blue LED in the device as a status LED, which will blink if there are warnings (slow) or errors (fast)
+status_led:
+  pin:
+    number: GPIO2
+    inverted: True
+
+# x2 relay outputs, exposed as switches in Home Assistant
+switch:
+  - platform: gpio
+    pin: GPIO5
+    name: Relay1
+    id: relay1
+  - platform: gpio
+    pin: GPIO4
+    name: Relay2
+    id: relay2
+  # Blue LED on Board (not ESP board) as switch in Home Assistant
+  - platform: gpio
+    name: Led16
+    pin: GPIO16
+    inverted: true
+
+binary_sensor:
+
+  # GPIO12 as binary sensor, just a binary sensor called "Reed1" (filtered on and off for 10ms), pullup enabled, no actions
+  - platform: gpio
+    pin: 
+      number: GPIO12
+      mode:
+        input: true
+        pullup: true
+    name: "Reed1"
+    filters:
+      - delayed_on: 10ms
+      - delayed_off: 10ms
+
+
+  # GPIO13 as binary sensor, just a binary sensor called "Reed2" (filtered on and off for 10ms), pullup enabled, no actions
+  - platform: gpio
+    pin: 
+      number: GPIO13
+      mode:
+        input: true
+        pullup: true
+    name: "Reed2"
+    filters:
+      - delayed_on: 10ms
+      - delayed_off: 10ms
+
+web_server:
+  port: 80
